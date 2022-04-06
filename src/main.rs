@@ -25,7 +25,10 @@ fn main() -> Result<()> {
                 Some(branch_index) => {
                     let branch_info = &local_branches[branch_index];
 
-                    if branch_info.name == "master" || branch_info.is_head() {
+                    if branch_info.name == "master"
+                        || branch_info.name == "main"
+                        || branch_info.is_head()
+                    {
                         println!("Cannot delete master or current branch\n");
                         continue;
                     }
@@ -116,7 +119,7 @@ fn get_branch_names<'a>(branches: &'a Vec<Branch>) -> Vec<String> {
     for branch in branches {
         if branch.is_head() {
             out_branches.push(format!("* {}", style(&branch.name).green()));
-        } else if branch.name == "master" {
+        } else if branch.name == "master" || branch.name == "main" {
             out_branches.push(format!("{}", style(&branch.name).green()));
         } else {
             out_branches.push(branch.name.clone());
