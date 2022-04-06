@@ -14,6 +14,7 @@ fn main() -> Result<()> {
 
         if branch_names.is_empty() {
             println!("No local branches found");
+            break;
         } else {
             let selected_branch = Select::with_theme(&ColorfulTheme::default())
                 .with_prompt("Select a branch (Press 'Esc or q' to exit):")
